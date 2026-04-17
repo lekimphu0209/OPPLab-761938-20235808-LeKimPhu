@@ -1,0 +1,23 @@
+**Additional Answers – Lab 02**
+
+---
+
+**Question: Is Java a Pass by Value or a Pass by Reference programming language?**
+Java là ngôn ngữ **pass-by-value**; khi truyền tham số, Java truyền bản sao của giá trị (với object là bản sao của reference).
+
+---
+
+**Question: If you create a constructor method to build a DVD by title then create a constructor method to build a DVD by category. Does JAVA allow you to do this?**
+Không, vì cả hai constructor đều có cùng kiểu tham số (String) nên trùng signature, Java không phân biệt được.
+
+---
+
+**Question: After the call of swap(jungleDVD, cinderellaDVD) why does the title of these two objects still remain?**
+Vì Java truyền bản sao của reference, swap() chỉ hoán đổi bản sao nên không ảnh hưởng đến đối tượng gốc.
+
+---
+
+**Question: After the call of changeTitle(jungleDVD, cinderellaDVD.getTitle()) why is the title of the JungleDVD changed?**
+Vì cả hai reference đều trỏ đến cùng một object, nên khi thay đổi thuộc tính qua method thì object gốc cũng bị thay đổi.
+
+---
