@@ -1,21 +1,33 @@
 package hust.soict.dsai.aims.store;
 
-import hust.soict.dsai.aims.media.Media;
 import java.util.ArrayList;
+import hust.soict.dsai.aims.media.Media;
 
 public class Store {
-    private ArrayList<Media> items = new ArrayList<>();
+    private ArrayList<Media> itemsInStore = new ArrayList<>();
 
     public void addMedia(Media m) {
-        items.add(m);
+        itemsInStore.add(m);
+        System.out.println("Added to store");
     }
 
     public void removeMedia(Media m) {
-        items.remove(m);
+        itemsInStore.remove(m);
+        System.out.println("Removed from store");
     }
 
-    public void show() {
-        for (Media m : items) {
+    public Media findByTitle(String title) {
+        for (Media m : itemsInStore) {
+            if (m.getTitle().equalsIgnoreCase(title)) {
+                return m;
+            }
+        }
+        return null;
+    }
+
+    public void print() {
+        System.out.println("\nSTORE:");
+        for (Media m : itemsInStore) {
             System.out.println(m);
         }
     }

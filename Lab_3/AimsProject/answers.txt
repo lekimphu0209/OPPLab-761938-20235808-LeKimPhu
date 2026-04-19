@@ -1,0 +1,76 @@
+1. What should be the return type of this method?
+
+Answer:
+The return type of the toString() method should be String, because it returns a textual representation of the object.
+
+2. Which classes are aggregates of other classes?
+
+Answer:
+Classes that are aggregates of other classes include:
+
+Cart (contains a collection of Media)
+Store (contains a collection of Media)
+CompactDisc (contains a list of Track)
+
+These classes manage collections of other objects.
+
+3. Checking all constructors of whole classes if they initialize for their parts?
+
+Answer:
+Constructors of aggregate classes should properly initialize their internal components (e.g., initialize ArrayList). If not initialized, it may cause NullPointerException during runtime.
+
+4. If the passing object is not an instance of Media, what happens?
+
+Answer:
+If the object is not an instance of Media, the equals() method should return false to avoid ClassCastException.
+
+5. Observe what happens and explain in detail.
+
+Answer:
+When iterating through an ArrayList<Media> and calling toString(), Java uses polymorphism to invoke the correct toString() method depending on the actual object type (Book, DVD, CD).
+This demonstrates runtime polymorphism (dynamic binding).
+
+Reading Assignment Questions
+6. What are the advantages of Polymorphism?
+
+Answer:
+
+Allows code reusability
+Improves flexibility and scalability
+Enables dynamic method binding (runtime behavior)
+Makes code easier to maintain and extend
+7. How is Inheritance useful to achieve Polymorphism in Java?
+
+Answer:
+Inheritance allows subclasses to inherit methods from a superclass and override them. This enables polymorphism, where a superclass reference can point to subclass objects and call overridden methods dynamically.
+
+8. What are the differences between Polymorphism and Inheritance in Java?
+
+Answer:
+
+Inheritance: mechanism for code reuse (parent-child relationship)
+Polymorphism: ability to use one interface for different data types
+Inheritance is a structural concept, while polymorphism is behavioral
+Polymorphism often relies on inheritance to work
+9. What class should implement the Comparable interface?
+
+Answer:
+The Media class should implement the Comparable interface because it is the base class for all media types and defines common comparison logic.
+
+10. In those classes, how should you implement the compareTo() method to reflect the ordering that we want?
+
+Answer:
+The compareTo() method should compare objects based on:
+
+Title first, then cost (if titles are equal)
+or
+Cost first, then title (depending on requirement)
+11. Can we have two ordering rules of the item (by title then cost and by cost then title) if we use this Comparable interface approach?
+
+Answer:
+No, Comparable only allows one natural ordering. To support multiple orderings, we should use Comparator.
+
+12. Suppose the DVDs have a different ordering rule from the other media types, that is by title, then decreasing length, then cost. How would you modify your code to allow this?
+
+Answer:
+You should create a separate Comparator for DVDs that implements the specific ordering logic (title → length ↓ → cost). Then use this comparator when sorting DVDs instead of relying on Comparable

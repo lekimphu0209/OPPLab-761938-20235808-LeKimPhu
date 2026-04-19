@@ -1,10 +1,10 @@
 package hust.soict.dsai.aims.media;
 
 public abstract class Media {
-    private int id;
-    private String title;
-    private String category;
-    private float cost;
+    protected int id;
+    protected String title;
+    protected String category;
+    protected float cost;
 
     public Media(int id, String title, String category, float cost) {
         this.id = id;
@@ -13,23 +13,13 @@ public abstract class Media {
         this.cost = cost;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public float getCost() {
-        return cost;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (!(obj instanceof Media)) return false;
-        Media other = (Media) obj;
-        return this.title.equals(other.title);
-    }
+    public int getId() { return id; }
+    public String getTitle() { return title; }
+    public String getCategory() { return category; }
+    public float getCost() { return cost; }
 
     @Override
     public String toString() {
-        return title + " - " + category + " - " + cost + "$";
+        return title + " - " + category + " - " + cost;
     }
 }

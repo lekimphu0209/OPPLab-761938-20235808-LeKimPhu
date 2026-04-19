@@ -9,13 +9,11 @@ public class Book extends Media {
         super(id, title, category, cost);
     }
 
-    public void addAuthor(String author) {
-        if (!authors.contains(author)) {
-            authors.add(author);
-        }
+    public void addAuthor(String name) {
+        if (!authors.contains(name)) authors.add(name);
     }
 
-    public void removeAuthor(String author) {
-        authors.remove(author);
+    public void removeAuthor(String name) {
+        authors.remove(name);
     }
 }
