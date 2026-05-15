@@ -1,0 +1,50 @@
+1. Compare Swing and AWT
+Compare the top-level containers in Swing and AWT
+Answer:
+AWT uses Frame as the top-level container, while Swing uses JFrame. JFrame is more flexible and supports lightweight components.
+
+Compare the class names of components in AWT and Swing
+Answer:
+AWT components use names like Label, TextField.
+Swing components use JLabel, JTextField (prefix “J”).
+
+Compare the event-handling of Swing and AWT applications
+Answer:
+Both use the same event delegation model with listeners (e.g., ActionListener). The mechanism is similar in both.
+
+Compare the appearance of Swing and AWT applications
+Answer:
+AWT uses native OS components, so appearance depends on the system.
+Swing uses Java-drawn components, so it is consistent and more customizable.
+
+2. NumberGrid – ButtonListener
+How to handle the DEL button?
+
+Answer:
+Remove the last character from the display text field if it is not empty.
+
+How to handle the C button?
+Answer:
+Clear all text in the display text field (set it to empty string).
+
+3. AIMS – Menu Handling
+What happens when clicking “Add Book / CD / DVD”?
+Answer:
+The application switches to a new screen to input and add the selected item to the store.
+
+What happens when clicking “View Store”?
+Answer:
+The application switches back to the main store screen.
+
+4. AIMS – Play Button
+What happens when clicking the “Play” button?
+Answer:
+A dialog window (JDialog) opens and plays the media.
+
+5. Design Question (Inheritance)
+How to design Add Item screens using inheritance?
+Answer:
+Create a parent class AddItemToStoreScreen for common UI and logic, then extend it into:
+AddBookToStoreScreen
+AddCompactDiscToStoreScreen
+AddDigitalVideoDiscToStoreScreen
