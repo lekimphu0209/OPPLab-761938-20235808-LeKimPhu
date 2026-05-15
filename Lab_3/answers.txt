@@ -1,0 +1,23 @@
+Question: Is Java a Pass by Value or a Pass by Reference programming language?
+Java là ngôn ngữ truyền tham trị (pass-by-value), kể cả với object thì cũng truyền bản sao của reference.
+
+Question: If you create a constructor method to build a DVD by title then create a constructor method to build a DVD by category. Does JAVA allow you to do this?
+Không, vì cả hai constructor đều có cùng kiểu tham số (String) nên trùng signature và gây lỗi compile.
+
+Question: What are the advantages of Polymorphism?
+Polymorphism giúp code linh hoạt, dễ mở rộng, giảm phụ thuộc và cho phép xử lý nhiều loại đối tượng thông qua một kiểu chung.
+
+Question: How is Inheritance useful to achieve Polymorphism in Java?
+Inheritance cho phép các class con kế thừa class cha và override method, từ đó khi gọi qua kiểu cha sẽ thực hiện đúng hành vi của class con.
+
+Question: What are the differences between Polymorphism and Inheritance in Java?
+Inheritance là cơ chế kế thừa giữa các class, còn polymorphism là khả năng một phương thức có nhiều cách thực thi khác nhau.
+
+Question: What class should implement Comparable interface?
+Class Media nên implement Comparable để định nghĩa cách so sánh mặc định giữa các media.
+
+Question: Can we have two ordering rules using Comparable?
+Không, vì Comparable chỉ cho phép một cách sắp xếp duy nhất (compareTo).
+
+Question: Difference between Comparable and Comparator?
+Comparable định nghĩa cách so sánh bên trong class (compareTo), còn Comparator là class riêng bên ngoài để định nghĩa nhiều cách sắp xếp khác nhau.
