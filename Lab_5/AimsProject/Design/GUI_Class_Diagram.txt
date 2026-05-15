@@ -1,0 +1,120 @@
+AIMS Project GUI Class Diagram - Lab 4
+==========================================
+
+Screen Classes Hierarchy:
+-----------------------
+
+AddItemToStoreScreen (abstract)
+├── AddBookToStoreScreen
+├── AddCompactDiscToStoreScreen
+└── AddDigitalVideoDiscToStoreScreen
+
+StoreManagerScreen
+├── Uses MediaStore components
+├── Menu navigation to Add screens
+└── BorderLayout structure
+
+MediaStore (extends JPanel)
+├── Displays Media information
+├── Play button for Playable media
+└── BoxLayout structure
+
+Class Relationships:
+-------------------
+
+StoreManagerScreen
+- HAS-A Store store
+- HAS-A MediaStore[] (in center panel)
+- NAVIGATES-TO AddItemToStoreScreen subclasses
+
+AddItemToStoreScreen (abstract)
+- HAS-A Store store
+- HAS-A various JTextField components
+- INHERITS-FROM JFrame
+- PROVIDES addMediaToStore() method
+- NAVIGATES-TO StoreManagerScreen
+
+AddBookToStoreScreen
+- INHERITS-FROM AddItemToStoreScreen
+- CREATES Book objects
+- HAS-A JTextField for title, category, cost, authors
+
+AddCompactDiscToStoreScreen
+- INHERITS-FROM AddItemToStoreScreen
+- CREATES CompactDisc objects
+- HAS-A JTextField for title, category, cost, director, length, artist
+
+AddDigitalVideoDiscToStoreScreen
+- INHERITS-FROM AddItemToStoreScreen
+- CREATES DigitalVideoDisc objects
+- HAS-A JTextField for title, category, cost, director, length
+
+MediaStore
+- INHERITS-FROM JPanel
+- HAS-A Media media
+- DISPLAYS media.title, media.category, media.cost
+- CONDITIONAL-HAS JButton (if media instanceof Playable)
+
+Key Design Patterns:
+-------------------
+
+1. Template Method Pattern:
+   - AddItemToStoreScreen defines template for add screens
+   - Subclasses implement createCenter() method
+
+2. Strategy Pattern:
+   - Different add strategies for each media type
+   - Polymorphic behavior through inheritance
+
+3. Observer Pattern (implicit):
+   - StoreManagerScreen observes Store changes
+   - Updates display when items are added
+
+GUI Layout Structure:
+-------------------
+
+StoreManagerScreen:
+- BorderLayout
+  - NORTH: MenuBar + Header
+  - CENTER: GridLayout of MediaStore components
+
+MediaStore:
+- BoxLayout (Y_AXIS)
+  - JLabel (title)
+  - JLabel (category)
+  - JLabel (cost)
+  - JButton (play, if Playable)
+
+AddItemToStoreScreen subclasses:
+- BorderLayout
+  - NORTH: MenuBar + Header
+  - CENTER: GridLayout of form fields
+
+Navigation Flow:
+---------------
+
+StoreManagerScreen
+    ↓ (Menu: Add Book/CD/DVD)
+AddItemToStoreScreen subclasses
+    ↓ (Add button success)
+StoreManagerScreen (refreshed)
+
+Dependencies:
+-----------
+
+External:
+- javax.swing.*
+- java.awt.*
+- java.awt.event.*
+
+Internal:
+- hust.soict.dsai.aims.store.Store
+- hust.soict.dsai.aims.media.*
+- hust.soict.dsai.aims.screen.*
+
+Notes:
+-----
+- All screens use SwingUtilities.invokeLater for thread safety
+- Auto-generated IDs based on store size
+- Input validation with JOptionPane error messages
+- Dispose pattern for window management

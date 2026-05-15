@@ -1,0 +1,23 @@
+# IDE
+
+.idea/
+.vscode/
+
+# IntelliJ
+
+*.iml
+
+# Java build
+
+out/
+build/
+target/
+
+# Lock files
+
+*.lock
+
+# OS
+
+.DS_Store
+Thumbs.db
