@@ -1,0 +1,157 @@
+UML Exception Tree - Lab 5
+============================
+
+Java Exception Hierarchy:
+-------------------------
+
+Throwable
+├── Error
+│   ├── OutOfMemoryError
+│   ├── StackOverflowError
+│   └── VirtualMachineError
+└── Exception
+    ├── RuntimeException
+    │   ├── NullPointerException
+    │   ├── IllegalArgumentException
+    │   ├── NumberFormatException
+    │   └── IndexOutOfBoundsException
+    ├── IOException
+    │   ├── FileNotFoundException
+    │   └── EOFException
+    ├── ClassNotFoundException
+    └── Custom Exceptions
+        └── PlayerException (AIMS Custom)
+
+AIMS Project Exception Handling:
+-------------------------------
+
+PlayerException (Custom)
+├── Purpose: Handle media playback errors
+├── Thrown by:
+│   ├── DigitalVideoDisc.play()
+│   ├── CompactDisc.play()
+│   └── Track.play()
+├── Usage in Controllers:
+│   ├── MediaItemController.play()
+│   ├── CartController.playMedia()
+│   └── Aims.main()
+└── Error Scenarios:
+    ├── DVD length <= 0
+    ├── CD total length <= 0
+    └── Track length <= 0
+
+Exception Flow in AIMS:
+------------------------
+
+1. Media.play() methods
+   ├── Check validation (length > 0)
+   ├── if invalid → throw PlayerException
+   └── if valid → proceed with playback
+
+2. Controller methods
+   ├── try-catch PlayerException
+   ├── Show error dialog (JavaFX Alert)
+   └── Log error to console
+
+3. Main application
+   ├── try-catch for initialization
+   ├── Handle FXML loading errors
+   └── Graceful error recovery
+
+Exception Handling Patterns:
+---------------------------
+
+1. Validation Pattern:
+   ```java
+   if (getLength() <= 0) {
+       throw new PlayerException("Invalid length: " + getLength());
+   }
+   ```
+
+2. Try-Catch Pattern:
+   ```java
+   try {
+       ((Playable) media).play();
+   } catch (PlayerException e) {
+       showAlert("Play Error", e.getMessage(), Alert.AlertType.ERROR);
+   }
+   ```
+
+3. Exception Propagation:
+   ```java
+   public void play() throws PlayerException {
+       // CD level
+       for (Track t : tracks) {
+           try {
+               t.play();
+           } catch (PlayerException e) {
+               throw e; // Re-throw to caller
+           }
+       }
+   }
+   ```
+
+Best Practices Implemented:
+---------------------------
+
+✅ Custom exception for domain-specific errors
+✅ Proper exception messages with context
+✅ Exception chaining (cause preservation)
+✅ Try-catch at UI layer for user feedback
+✅ Validation before throwing exceptions
+✅ Exception propagation where appropriate
+✅ User-friendly error dialogs
+✅ Console logging for debugging
+
+Exception Tree Visualization:
+---------------------------
+
+        Throwable
+            |
+        Exception
+            |
+    +-------+-------+
+    |               |
+RuntimeException    PlayerException (Custom)
+    |                   |
+NullPointerException  |
+IllegalArgumentException |
+    |                   |
+    |           +-------+-------+
+    |           |               |
+    |    DVD.play()    CD.play()
+    |           |               |
+    |    Track.play()    |
+    |                   |
+    +-------------------+
+            |
+    Controller Methods
+            |
+    User Interface (Alert Dialogs)
+
+Error Scenarios Handled:
+------------------------
+
+1. Invalid Media Length
+   - DVD with length <= 0
+   - CD with total length <= 0
+   - Track with length <= 0
+
+2. UI Error Handling
+   - FXML loading failures
+   - Invalid user input
+   - Media selection errors
+
+3. System Errors
+   - Memory issues
+   - File I/O problems
+   - Network connectivity (future)
+
+Exception Safety Guarantees:
+---------------------------
+
+✅ No resource leaks
+✅ Consistent object state
+✅ Proper error propagation
+✅ User-friendly error messages
+✅ Graceful degradation

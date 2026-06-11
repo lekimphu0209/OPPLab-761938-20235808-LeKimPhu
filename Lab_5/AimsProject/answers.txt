@@ -1,50 +1,14 @@
-1. Compare Swing and AWT
-Compare the top-level containers in Swing and AWT
-Answer:
-AWT uses Frame as the top-level container, while Swing uses JFrame. JFrame is more flexible and supports lightweight components.
-
-Compare the class names of components in AWT and Swing
-Answer:
-AWT components use names like Label, TextField.
-Swing components use JLabel, JTextField (prefix “J”).
-
-Compare the event-handling of Swing and AWT applications
-Answer:
-Both use the same event delegation model with listeners (e.g., ActionListener). The mechanism is similar in both.
-
-Compare the appearance of Swing and AWT applications
-Answer:
-AWT uses native OS components, so appearance depends on the system.
-Swing uses Java-drawn components, so it is consistent and more customizable.
-
-2. NumberGrid – ButtonListener
-How to handle the DEL button?
+Question:
+The Aims class must be updated to handle any exceptions generated when the play() methods are called. What happens when you don’t update for them to catch?
 
 Answer:
-Remove the last character from the display text field if it is not empty.
+PlayerException thuộc nhóm checked exceptions vì nó được kế thừa từ lớp Exception. Trong Java, mọi checked exception phải được xử lý hoặc khai báo rõ ràng trước khi chương trình được biên dịch.
 
-How to handle the C button?
-Answer:
-Clear all text in the display text field (set it to empty string).
+Khi phương thức play() được khai báo có thể ném ra PlayerException, bất kỳ đoạn mã nào gọi play() cũng phải thực hiện một trong hai cách sau:
 
-3. AIMS – Menu Handling
-What happens when clicking “Add Book / CD / DVD”?
-Answer:
-The application switches to a new screen to input and add the selected item to the store.
+Bắt ngoại lệ bằng khối try-catch.
+Khai báo tiếp ngoại lệ bằng từ khóa throws.
 
-What happens when clicking “View Store”?
-Answer:
-The application switches back to the main store screen.
+Nếu lớp Aims gọi play() nhưng không thực hiện một trong hai cách trên, trình biên dịch sẽ phát sinh lỗi biên dịch (compile-time error). Điều này đồng nghĩa với việc chương trình không thể được biên dịch và chạy.
 
-4. AIMS – Play Button
-What happens when clicking the “Play” button?
-Answer:
-A dialog window (JDialog) opens and plays the media.
-
-5. Design Question (Inheritance)
-How to design Add Item screens using inheritance?
-Answer:
-Create a parent class AddItemToStoreScreen for common UI and logic, then extend it into:
-AddBookToStoreScreen
-AddCompactDiscToStoreScreen
-AddDigitalVideoDiscToStoreScreen
+Vì vậy, để đảm bảo chương trình hoạt động đúng, lớp Aims cần được sửa đổi để xử lý hoặc truyền tiếp PlayerException. Nếu bỏ qua bước này, mã nguồn sẽ không vượt qua quá trình biên dịch của Java.
