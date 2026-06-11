@@ -46,7 +46,11 @@ public class MediaItemController {
     @FXML
     public void play() {
         if (media instanceof Playable) {
-            ((Playable) media).play();
+            try {
+                ((Playable) media).play();
+            } catch (hust.soict.dsai.aims.exception.PlayerException e) {
+                System.err.println("Error playing media: " + e.getMessage());
+            }
         }
     }
 }

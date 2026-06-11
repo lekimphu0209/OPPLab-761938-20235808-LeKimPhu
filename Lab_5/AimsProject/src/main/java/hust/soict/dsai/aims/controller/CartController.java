@@ -168,7 +168,11 @@ public class CartController {
     public void playMedia() {
         Media selectedMedia = cartTableView.getSelectionModel().getSelectedItem();
         if (selectedMedia instanceof Playable) {
-            ((Playable) selectedMedia).play();
+            try {
+                ((Playable) selectedMedia).play();
+            } catch (hust.soict.dsai.aims.exception.PlayerException e) {
+                showAlert("Play Error", "Cannot play media: " + e.getMessage(), Alert.AlertType.ERROR);
+            }
         }
     }
     

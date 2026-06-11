@@ -79,7 +79,11 @@ public class Cart {
         for (Media m : itemsOrdered) {
             if (m.getTitle().equalsIgnoreCase(title)) {
                 if (m instanceof Playable) {
-                    ((Playable) m).play();
+                    try {
+                        ((Playable) m).play();
+                    } catch (hust.soict.dsai.aims.exception.PlayerException e) {
+                        System.err.println("Error playing media: " + e.getMessage());
+                    }
                 } else {
                     System.out.println("Cannot play!");
                 }
